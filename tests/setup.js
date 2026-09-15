@@ -1,14 +1,20 @@
+require("dotenv").config();
+
 const mongoose = require("mongoose");
+const { MongoMemoryServer } = require("mongodb-memory-server");
+
+let mongoServer;
 
 beforeAll(async () => {
-  process.env.JWT_SECRET = process.env.JWT_SECRET || "test-secret-key";
-  process.env.MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/social_media_test";
-
-  await mongoose.connect(process.env.MONGO_URI);
+  process.env.JWT_SECRET = "test-secret-key";
+  mongoServer = await MongoMemoryServer.create({ instance: { launchTimeout: 60000 } });
+  await mongoose.connect(mongoServer.getUri());
 }, 120000);
 
 afterAll(async () => {
-  if (mongoose.connection.readyState !== 0) {
-    await mongoose.disconnect();
-  }
+  await mongoose.disconnect();
+  if (mongoServer) await mongoServer.stop();
 });
+
+
+jest.setTimeout(120000);
