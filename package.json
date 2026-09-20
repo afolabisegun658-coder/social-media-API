@@ -1,15 +1,15 @@
 {
   "name": "social-media-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "RESTful social media API built with Node.js, Express, MongoDB, and JWT authentication",
   "main": "src/server.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "node scripts/ensure-mongo.js && node src/server.js",
-    "dev": "node scripts/ensure-mongo.js && node --watch src/server.js",
-    "test": "node scripts/ensure-mongo.js && jest --runInBand",
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "jest --runInBand",
     "start:db": "node scripts/ensure-mongo.js"
   },
   "jest": {
@@ -21,8 +21,13 @@
       "**/tests/**/*.test.js"
     ]
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "nodejs",
+    "express",
+    "mongodb",
+    "rest-api"
+  ],
+  "author": "Afolabi Segun",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.3",
