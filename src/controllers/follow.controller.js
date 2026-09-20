@@ -1,5 +1,5 @@
 // src/controllers/follow.controller.js
-const Follow = require("../models/Follow");
+const Follow = require("../models/follow");
 const User = require("../models/User");
 
 exports.followUser = async (req, res, next) => {
